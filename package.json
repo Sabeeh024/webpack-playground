@@ -1,0 +1,14 @@
+{
+  "name": "webpack-playground",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "rm -rf build && cp -r src build",
+    "start:dev": "npx serve src -p 3000",
+    "start:prod": "npm run build && npx serve build -p 3000",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
