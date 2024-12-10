@@ -4,15 +4,16 @@
   "description": "",
   "private": "true",
   "scripts": {
-    "build": "webpack && cp -r src/index.html dist",
-    "start:dev": "npx serve src -p 3000",
-    "start:prod": "npm run build && npx serve dist -p 3000",
+    "build": "webpack && cp -r src/index.html build",
+    "start:dev": "webpack serve",
+    "start:prod": "webpack serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "webpack": "^5.97.1",
-    "webpack-cli": "^5.1.4"
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0"
   }
 }
