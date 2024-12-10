@@ -2,13 +2,17 @@
   "name": "webpack-playground",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "private": "true",
   "scripts": {
-    "build": "rm -rf build && cp -r src build",
+    "build": "webpack && cp -r src/index.html dist",
     "start:dev": "npx serve src -p 3000",
-    "start:prod": "npm run build && npx serve build -p 3000",
+    "start:prod": "npm run build && npx serve dist -p 3000",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.97.1",
+    "webpack-cli": "^5.1.4"
+  }
 }
