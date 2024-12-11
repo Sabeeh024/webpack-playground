@@ -1,6 +1,6 @@
 import '../src/style.css';
 import Icon from '../src/assets/images/download.png';
-
+console.log('test')
 function component() {
     const element = document.createElement('div');
     element.innerHTML = ['Hello', 'webpack'].join(' ');

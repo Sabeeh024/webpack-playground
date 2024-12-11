@@ -1,37 +1,49 @@
 const path = require('path')
+const TerserPlugin = require("terser-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
-    mode: 'development',
-    entry: { main: './src/index.js' },
-    output: {
-        filename: '[name].js',
-        path: path.resolve(__dirname, 'build'),
-        clean: true
-    },
-    module: {
-        rules: [
-            {
-                test: /\.css$/i,
-                use: ['style-loader', 'css-loader']
-            },
-            {
-                test: /\.(png|svg|jpg|jpeg|gif)$/i,
-                type: 'asset/resource',
-            },
-            {
-                test: /\.(woff|woff2|eot|ttf|otf)$/i,
-                type: 'asset/resource',
-            },
-        ]
-    },
-    devServer: {
-        static: {
-            directory: path.resolve(__dirname, 'build')
+module.exports = (_, argv) => {
+    const isProduction = argv.mode === 'production';
+    const config = {
+        mode: argv.mode,
+        entry: { main: './src/index.js' },
+        output: {
+            filename: '[name].js',
+            path: path.resolve(__dirname, 'build'),
+            clean: true
         },
-        port: 3000,
-        open: true,
-        hot: true,
-        compress: true,
-        historyApiFallback: true,
+        module: {
+            rules: [
+                {
+                    test: /\.css$/i,
+                    use: ['style-loader', 'css-loader']
+                },
+                {
+                    test: /\.png$/i,
+                    type: 'asset/resource',
+                },
+                {
+                    test: /\.ttf$/i,
+                    type: 'asset/resource',
+                },
+            ]
+        },
+        optimization: {
+            minimize: true,
+            minimizer: [new TerserPlugin()],
+        },
+        devServer: {
+            static: {
+                directory: path.resolve(__dirname, 'build')
+            },
+            port: 3000,
+            open: true,
+            hot: true,
+            compress: true,
+            historyApiFallback: true,
+        },
+        plugins: [new HtmlWebpackPlugin()],
     }
+    !isProduction && (config.devtool = 'eval-cheap-module-source-map');
+    return config
 }

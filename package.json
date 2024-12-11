@@ -4,15 +4,15 @@
   "description": "",
   "private": "true",
   "scripts": {
-    "build": "webpack && cp -r src/index.html build",
+    "build": "webpack --mode=production",
     "start:dev": "webpack serve",
-    "start:prod": "webpack serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.3",
     "style-loader": "^4.0.0",
     "webpack": "^5.97.1",
     "webpack-cli": "^5.1.4",
