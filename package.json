@@ -6,6 +6,9 @@
   "scripts": {
     "build": "webpack --mode=production",
     "start:dev": "webpack serve",
+    "path": "npm version patch",
+    "minor": "npm version minor",
+    "major": "npm version major",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
