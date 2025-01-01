@@ -6,7 +6,7 @@ module.exports = (_, argv) => {
     const isProduction = argv.mode === 'production';
     const config = {
         mode: argv.mode,
-        entry: { main: './src/index.js' },
+        entry: { main: './src/index.jsx' },
         output: {
             filename: '[name].js',
             path: path.resolve(__dirname, 'build'),
@@ -17,6 +17,13 @@ module.exports = (_, argv) => {
                 {
                     test: /\.css$/i,
                     use: ['style-loader', 'css-loader']
+                },
+                {
+                    test: /\.jsx?$/,
+                    exclude: /node_modules/,
+                    use: {
+                        loader: 'babel-loader',
+                    },
                 },
                 {
                     test: /\.png$/i,
@@ -42,7 +49,11 @@ module.exports = (_, argv) => {
             compress: true,
             historyApiFallback: true,
         },
-        plugins: [new HtmlWebpackPlugin()],
+        plugins: [
+            new HtmlWebpackPlugin({
+                template: './src/index.html',
+            }),
+        ],
     }
     !isProduction && (config.devtool = 'eval-cheap-module-source-map');
     return config
