@@ -8,9 +8,13 @@ module.exports = (_, argv) => {
         mode: argv.mode,
         entry: { main: './src/index.jsx' },
         output: {
-            filename: '[name].js',
+            filename: '[name].[contenthash:8].js',
             path: path.resolve(__dirname, 'build'),
-            clean: true
+            clean: true,
+            chunkFilename: '[name].[contenthash:8].chunk.js',
+        },
+        resolve: {
+            extensions: ['.js', '.jsx'],
         },
         module: {
             rules: [
